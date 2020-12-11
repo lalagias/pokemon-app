@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Header from "./Header";
+import { Switch, Route } from "react-router";
 
 function App() {
+  const loading = () => <div className="animated fadeIn pt-3 text-center">Loading...</div>;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      <React.Suspense fallback={loading()}>
+        <Switch>
+          <Route exact path="/login" name="Login Page" render={(props) => <Login {...props} />} />
+          <Route></Route>
+          <Route></Route>
+          <Route></Route>
+        </Switch>
+      </React.Suspense>
     </div>
   );
 }
